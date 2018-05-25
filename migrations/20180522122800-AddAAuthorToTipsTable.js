@@ -3,13 +3,13 @@
 module.exports = {
     up: function (queryInterface, Sequelize) {
         return queryInterface.addColumn(
-            'quizzes',
-            'authorId', //añade la columna authorId a la tabla quizzes
+            'tips',
+            'authorId',
             {type: Sequelize.INTEGER}
         );
     },
 
     down: function (queryInterface, Sequelize) {
-        return queryInterface.removeColumn('quizzes', 'authorId');
+        return queryInterface.removeColumn('tips', 'authorId');
     }
 };
