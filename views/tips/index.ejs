@@ -24,7 +24,7 @@
 
                 <% } %>
                 
-                <% if (isAdmin || isQuizAuthor) { %>
+                <% if (accepted) { %>
 
                     <a href="/quizzes/<%= quizId %>/tips/<%= tip.id %>/edit">
                         <button>Edit</button>
