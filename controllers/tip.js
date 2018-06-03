@@ -63,7 +63,7 @@ exports.edit = (req, res, next) => {
 
     const {tip, quiz} = req;
 
-    res.render('tip/edit', {tip, quiz});
+    res.render('tips/edit', {tip, quiz});
 };
 
 
