@@ -1,6 +1,8 @@
 
 <ul>
+
     <% for (var i in tips) { %>
+    
         <% var tip = tips[i]; %>
 
         <% var accepted = tip.accepted; %>
@@ -8,13 +10,14 @@
         <% var isQuizAuthor = session.user && quizAuthorId && quizAuthorId === session.user.id; %>
         <% var isTipAuthor = session.user && tip.AuthorId === session.user.id; %>
 
+              
 
-        <% if (accepted || isAdmin || isQuizAuthor) { %>
+        <% if (accepted) { %>
 
             <li>
                 <%= tip.text %>
+                    <small> (by <%= quiz.author ? quiz.author.username : "Anonymous" %>) </small>
 
-                (by <%= tip.author ? tip.author.username : "Anonimo"%>)
 
                 <% if (!accepted && (isAdmin || isQuizAuthor)) { %>
 

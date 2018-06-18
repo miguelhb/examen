@@ -8,6 +8,10 @@
 
 <form method="get" action="/quizzes/randomcheck/<%= quiz.id %>">
 
+  <div class="right">
+    <small> (by <%= quiz.author ? quiz.author.username : "Anonymous" %>) </small>
+	</div>
+    
     <p>
         Question: <b><%= quiz.question %></b>
     </p>
@@ -18,4 +22,13 @@
         <input type="submit" class="itemNarrow" id="send" value="Check">
     </div>
 </form>
+
+<h1>
+    Tips:
+</h1>
+
+<% var tips = quiz.tips; %>
+<% var quizId = quiz.id; %>
+<% var quizAuthorId = quiz.authorId; %>
+p<% include ../tips/index %>
 
