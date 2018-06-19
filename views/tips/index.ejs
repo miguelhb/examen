@@ -2,7 +2,6 @@
 <ul>
 
     <% for (var i in tips) { %>
-    
         <% var tip = tips[i]; %>
 
         <% var accepted = tip.accepted; %>
@@ -10,9 +9,9 @@
         <% var isQuizAuthor = session.user && quizAuthorId && quizAuthorId === session.user.id; %>
         <% var isTipAuthor = session.user && tip.AuthorId === session.user.id; %>
 
-              
 
-        <% if (accepted) { %>
+
+        <% if (accepted || isAdmin || isQuizAuthor) { %>
 
             <li>
                 <%= tip.text %>

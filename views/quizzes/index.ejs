@@ -3,6 +3,17 @@
     <form method="get" action="/quizzes">
         <input type="text" name="search" value="<%= locals.search || '' %>" placeholder="question to search" autocomplete="off" />
         <input type="submit" value="Search">
+
+        <% if (session.user) { %>
+            <br/>
+
+            <div>
+                <label>Solo favoritos:</label>
+                <input type="checkbox" name="searchfavourites"
+                       value="1" <%= locals.searchfavourites ? 'checked' : '' %> >
+                <img class="star" src="/images/star_yellow.png" \>
+            </div>
+        <% } %>
     </form>
 </div>
 
@@ -10,17 +21,22 @@
     <%= title || "Questions" %>:
 </h1>
 
-<table>
+<table id="quizzesIndex">
     <% for (var i in quizzes) { %>
     <% var quiz = quizzes[i]; %>
     <tr>
+
         <td>
+            <% var attachment = quiz.attachment; %>
+            <% include ../attachments/_show %>
+        </td>
+        <td>
+                     <% include ../favourites/_stars.ejs %> 
             <a href="/quizzes/<%= quiz.id %>/play"><%= quiz.question %></a>
         </td>
         <td colspan="2">
             <small> (by <%= quiz.author ? quiz.author.username : "Anonymous" %>) </small>
         </td>
-
         <% if (session.user) { %>
             <% if (session.user.isAdmin || session.user.id === quiz.authorId) { %>
                 <td>
